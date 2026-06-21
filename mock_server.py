@@ -4,6 +4,7 @@ import os
 import re
 import ssl
 import subprocess
+import argparse
 
 PORT = 8000
 TOKEN = os.environ.get("TRAVELER_API_KEY", "traveler_secret_token_2026")
@@ -175,33 +176,49 @@ startxref
             self.end_headers()
 
 if __name__ == '__main__':
+    # Parse CLI Arguments
+    parser = argparse.ArgumentParser(description="Traveler Mock Server")
+    parser.add_argument("--port", type=int, default=8000, help="Port to run the server on")
+    parser.add_argument("--http", action="store_true", help="Run in HTTP mode (disable SSL)")
+    parser.add_argument("--token", type=str, default=None, help="Authorization Bearer token")
+    args = parser.parse_args()
+
+    PORT = args.port
+    if args.token:
+        TOKEN = args.token
+
     # Make sure we run in the server directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_dir)
     
-    cert_file = 'server.crt'
-    key_file = 'server.key'
-    
-    if not os.path.exists(cert_file) or not os.path.exists(key_file):
-        print("Generating self-signed SSL certificate...")
-        try:
-            subprocess.run([
-                'openssl', 'req', '-new', '-x509', '-keyout', key_file,
-                '-out', cert_file, '-days', '365', '-nodes',
-                '-subj', '/CN=localhost'
-            ], check=True)
-        except Exception as e:
-            print(f"Error generating SSL certificate: {e}")
-            
+    if not args.http:
+        cert_file = 'server.crt'
+        key_file = 'server.key'
+        
+        if not os.path.exists(cert_file) or not os.path.exists(key_file):
+            print("Generating self-signed SSL certificate...")
+            try:
+                subprocess.run([
+                    'openssl', 'req', '-new', '-x509', '-keyout', key_file,
+                    '-out', cert_file, '-days', '365', '-nodes',
+                    '-subj', '/CN=localhost'
+                ], check=True)
+            except Exception as e:
+                print(f"Error generating SSL certificate: {e}")
+                
     handler = TravelerMockServer
     
-    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    context.load_cert_chain(certfile=cert_file, keyfile=key_file)
-    
     with socketserver.TCPServer(("", PORT), handler) as httpd:
-        httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
-        print(f"Traveler Mock Server running at https://localhost:{PORT}")
-        print("Serving trip.json and auto-generating mock PDFs on demand (HTTPS enabled).")
+        if not args.http:
+            context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+            context.load_cert_chain(certfile=cert_file, keyfile=key_file)
+            httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
+            print(f"Traveler Mock Server running at https://localhost:{PORT}")
+            print("Serving trip.json and auto-generating mock PDFs on demand (HTTPS enabled).")
+        else:
+            print(f"Traveler Mock Server running at http://localhost:{PORT}")
+            print("Serving trip.json and auto-generating mock PDFs on demand (HTTP mode).")
+            
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
