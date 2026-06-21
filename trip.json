@@ -35,6 +35,13 @@
             "Alice": "tickets/ticket_alice_bf720.pdf",
             "Bob": "tickets/ticket_bob_bf720.pdf",
             "Valtou": "tickets/ticket_valtou_bf720.pdf"
+          },
+          "walletPasses": [],
+          "profileWalletPasses": {
+            "Gauthier": "passes/pass_gauthier_bf720.pkpass",
+            "Alice": "passes/pass_alice_bf720.pkpass",
+            "Bob": "passes/pass_bob_bf720.pkpass",
+            "Valtou": "passes/pass_valtou_bf720.pkpass"
           }
         },
         {
@@ -536,6 +543,13 @@
             "Alice": "tickets/ticket_alice_bf743.pdf",
             "Bob": "tickets/ticket_bob_bf743.pdf",
             "Valtou": "tickets/ticket_valtou_bf743.pdf"
+          },
+          "walletPasses": [],
+          "profileWalletPasses": {
+            "Gauthier": "passes/pass_gauthier_bf743.pkpass",
+            "Alice": "passes/pass_alice_bf743.pkpass",
+            "Bob": "passes/pass_bob_bf743.pkpass",
+            "Valtou": "passes/pass_valtou_bf743.pkpass"
           }
         }
       ]
