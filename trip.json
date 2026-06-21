@@ -1,0 +1,546 @@
+{
+  "tripName": "US West Coast Adventure 🇺🇸",
+  "startDate": "2026-07-01",
+  "endDate": "2026-07-21",
+  "users": ["Gauthier", "Alice", "Bob", "Charlie"],
+  "emergencyInfo": {
+    "numbers": [
+      { "label": "US Emergency", "number": "911" },
+      { "label": "Roadside Assistance", "number": "1-800-336-4357" }
+    ],
+    "notes": "ESTA must be printed/saved. Health insurance policy number: US-992-1082-A (Allianz Travel)."
+  },
+  "steps": [
+    {
+      "id": "day1",
+      "dayNumber": 1,
+      "title": "Departure & Arrival in San Francisco",
+      "date": "2026-07-01",
+      "location": {
+        "name": "San Francisco International Airport (SFO)",
+        "latitude": 37.6213,
+        "longitude": -122.3790
+      },
+      "description": "Flight from Paris CDG to San Francisco SFO. Pick up rental car and check in to the hotel.",
+      "items": [
+        {
+          "id": "flight_out",
+          "type": "flight",
+          "title": "Flight AF084 (CDG to SFO)",
+          "time": "10:15 AM",
+          "details": "Terminal 2E, CDG Airport. Duration: 11h 30m.",
+          "sharedFiles": ["flight_info_af084.pdf"],
+          "profileFiles": {
+            "Gauthier": "tickets/ticket_gauthier_flight.pdf",
+            "Alice": "tickets/ticket_alice_flight.pdf",
+            "Bob": "tickets/ticket_bob_flight.pdf",
+            "Charlie": "tickets/ticket_charlie_flight.pdf"
+          }
+        },
+        {
+          "id": "car_rental",
+          "type": "transit",
+          "title": "Hertz Car Rental Pick-up",
+          "time": "3:00 PM",
+          "details": "SFO Car Rental Center. Confirmation: #HZ-88291-SF. Large SUV booked.",
+          "sharedFiles": ["hertz_rental_car.pdf"]
+        },
+        {
+          "id": "hotel_sf",
+          "type": "hotel",
+          "title": "Hotel Riu Plaza Fisherman's Wharf",
+          "time": "4:30 PM Check-in",
+          "details": "2500 Mason St, San Francisco, CA 94133",
+          "sharedFiles": ["hotel_riu_plaza_sf.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day2",
+      "dayNumber": 2,
+      "title": "Exploring the City by the Bay",
+      "date": "2026-07-02",
+      "location": {
+        "name": "Fisherman's Wharf & Alcatraz",
+        "latitude": 37.8080,
+        "longitude": -122.4177
+      },
+      "description": "Cable car ride, visit to Alcatraz Island, and a walk across the Golden Gate Bridge.",
+      "items": [
+        {
+          "id": "alcatraz",
+          "type": "activity",
+          "title": "Alcatraz Day Tour",
+          "time": "9:30 AM",
+          "details": "Pier 33 Alcatraz Landing. Be there 30 mins early.",
+          "sharedFiles": ["alcatraz_booking.pdf"]
+        },
+        {
+          "id": "cable_car",
+          "type": "activity",
+          "title": "Powell-Hyde Cable Car Ride",
+          "time": "2:30 PM",
+          "details": "Board at Hyde & Beach Sts. Single rides can be bought on MuniMobile app.",
+          "sharedFiles": []
+        }
+      ]
+    },
+    {
+      "id": "day3",
+      "dayNumber": 3,
+      "title": "Drive to Yosemite Valley",
+      "date": "2026-07-03",
+      "location": {
+        "name": "Yosemite Valley Lodge",
+        "latitude": 37.7428,
+        "longitude": -119.5985
+      },
+      "description": "Drive from SF to Yosemite National Park (~4 hours). Stop at Oakdale for groceries.",
+      "items": [
+        {
+          "id": "yosemite_entry",
+          "type": "transit",
+          "title": "Yosemite National Park Entry Reservation",
+          "time": "12:00 PM",
+          "details": "Reservation required for peak hours entry (6 AM - 4 PM). Confirmation: #YOS-99120.",
+          "sharedFiles": ["yosemite_entry_pass.pdf"]
+        },
+        {
+          "id": "yosemite_lodge",
+          "type": "hotel",
+          "title": "Yosemite Valley Lodge Check-in",
+          "time": "4:00 PM",
+          "details": "9006 Yosemite Lodge Dr, Yosemite National Park, CA 95389",
+          "sharedFiles": ["yosemite_lodge_booking.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day4",
+      "dayNumber": 4,
+      "title": "Conquering Half Dome",
+      "date": "2026-07-04",
+      "location": {
+        "name": "Half Dome Trail",
+        "latitude": 37.7460,
+        "longitude": -119.5332
+      },
+      "description": "An epic day hike to Half Dome. Very demanding (~14-16 hours, 17 miles). Early start at 5:00 AM required.",
+      "items": [
+        {
+          "id": "half_dome_permit",
+          "type": "activity",
+          "title": "Half Dome Cables Permit Check",
+          "time": "10:00 AM",
+          "details": "Rangers will check permits at the base of Sub Dome.",
+          "sharedFiles": [],
+          "profileFiles": {
+            "Gauthier": "permits/half_dome_gauthier.pdf",
+            "Alice": "permits/half_dome_alice.pdf",
+            "Bob": "permits/half_dome_bob.pdf",
+            "Charlie": "permits/half_dome_charlie.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day5",
+      "dayNumber": 5,
+      "title": "Yosemite to Monterey & Pacific Highway",
+      "date": "2026-07-05",
+      "location": {
+        "name": "Monterey Bay",
+        "latitude": 36.6002,
+        "longitude": -121.8947
+      },
+      "description": "Drive from Yosemite to Monterey (~3.5 hours). Walk around Cannery Row and Fisherman's Wharf.",
+      "items": [
+        {
+          "id": "hotel_monterey",
+          "type": "hotel",
+          "title": "The Monterey Hotel",
+          "time": "3:00 PM Check-in",
+          "details": "407 Calle Principal, Monterey, CA 93940",
+          "sharedFiles": ["monterey_hotel.pdf"]
+        },
+        {
+          "id": "whale_watching",
+          "type": "activity",
+          "title": "Sunset Whale Watching Cruise",
+          "time": "5:30 PM",
+          "details": "Monterey Bay Whale Watch (84 Fisherman's Wharf). Warm clothes recommended.",
+          "sharedFiles": ["whale_watching_tickets.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day6",
+      "dayNumber": 6,
+      "title": "Big Sur Drive & Santa Barbara",
+      "date": "2026-07-06",
+      "location": {
+        "name": "Santa Barbara",
+        "latitude": 34.4208,
+        "longitude": -119.6982
+      },
+      "description": "Drive the famous Highway 1 through Big Sur. Stop at Bixby Creek Bridge, McWay Falls, and Hearst Castle, then arrive in Santa Barbara.",
+      "items": [
+        {
+          "id": "hotel_sb",
+          "type": "hotel",
+          "title": "Brisas Del Mar, Inn at the Beach",
+          "time": "4:00 PM Check-in",
+          "details": "223 Castillo St, Santa Barbara, CA 93101",
+          "sharedFiles": ["hotel_brisas_sb.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day7",
+      "dayNumber": 7,
+      "title": "Santa Barbara to Los Angeles",
+      "date": "2026-07-07",
+      "location": {
+        "name": "Santa Monica Pier",
+        "latitude": 34.0100,
+        "longitude": -118.4962
+      },
+      "description": "Morning in Santa Barbara, then drive to LA (~2 hours). Visit Santa Monica Pier and Venice Beach in the evening.",
+      "items": [
+        {
+          "id": "hotel_la",
+          "type": "hotel",
+          "title": "Loews Santa Monica Beach Hotel",
+          "time": "3:00 PM Check-in",
+          "details": "1700 Ocean Ave, Santa Monica, CA 90401",
+          "sharedFiles": ["hotel_loews_la.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day8",
+      "dayNumber": 8,
+      "title": "Universal Studios Hollywood",
+      "date": "2026-07-08",
+      "location": {
+        "name": "Universal Studios",
+        "latitude": 34.1381,
+        "longitude": -118.3534
+      },
+      "description": "Full day at Universal Studios Hollywood, exploring Super Nintendo World and the Studio Tour.",
+      "items": [
+        {
+          "id": "universal_tickets",
+          "type": "activity",
+          "title": "Universal Studios 1-Day Express Pass",
+          "time": "9:00 AM Entry",
+          "details": "Express Pass included for all rides. Gates open at 9 AM.",
+          "sharedFiles": ["universal_group_receipt.pdf"],
+          "profileFiles": {
+            "Gauthier": "tickets/universal_gauthier.pdf",
+            "Alice": "tickets/universal_alice.pdf",
+            "Bob": "tickets/universal_bob.pdf",
+            "Charlie": "tickets/universal_charlie.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day9",
+      "dayNumber": 9,
+      "title": "Hollywood & Observatory Sunset",
+      "date": "2026-07-09",
+      "location": {
+        "name": "Griffith Observatory",
+        "latitude": 34.1184,
+        "longitude": -118.3004
+      },
+      "description": "Walk of Fame in the morning, hike to Hollywood Sign at noon, sunset and planetarium show at Griffith Observatory.",
+      "items": [
+        {
+          "id": "observatory_show",
+          "type": "activity",
+          "title": "Griffith Planetarium Ticket Reservation",
+          "time": "7:00 PM Show",
+          "details": "Samuel Oschin Planetarium. Tickets purchased at the desk, but reservation confirmed.",
+          "sharedFiles": ["observatory_reservation.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day10",
+      "dayNumber": 10,
+      "title": "LA to Las Vegas via Death Valley",
+      "date": "2026-07-10",
+      "location": {
+        "name": "Las Vegas Strip",
+        "latitude": 36.1147,
+        "longitude": -115.1728
+      },
+      "description": "Long drive through Death Valley National Park (~5.5 hours driving time). Stop at Badwater Basin and Zabriskie Point. Arrive on the Vegas Strip.",
+      "items": [
+        {
+          "id": "hotel_vegas",
+          "type": "hotel",
+          "title": "The Cosmopolitan of Las Vegas",
+          "time": "4:00 PM Check-in",
+          "details": "3708 Las Vegas Blvd S, Las Vegas, NV 89109 (Terrace Studio Fountain View rooms)",
+          "sharedFiles": ["cosmopolitan_booking.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day11",
+      "dayNumber": 11,
+      "title": "Grand Canyon Helicopter Tour",
+      "date": "2026-07-11",
+      "location": {
+        "name": "Maverick Helicopters Las Vegas",
+        "latitude": 36.0792,
+        "longitude": -115.1481
+      },
+      "description": "Fly over Lake Mead, Hoover Dam, and land inside the Grand Canyon for champagne.",
+      "items": [
+        {
+          "id": "helicopter_tour",
+          "type": "activity",
+          "title": "Maverick Wind Dancer Helicopter Tour",
+          "time": "1:00 PM Flight",
+          "details": "Shuttle picks up from Cosmopolitan at 12:00 PM. Bring passports!",
+          "sharedFiles": ["helicopter_booking.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day12",
+      "dayNumber": 12,
+      "title": "Vegas Strip & O by Cirque du Soleil",
+      "date": "2026-07-12",
+      "location": {
+        "name": "Bellagio Hotel & Casino",
+        "latitude": 36.1126,
+        "longitude": -115.1767
+      },
+      "description": "Relax at the pool, explore other casinos, and see the world-famous water show 'O' at the Bellagio.",
+      "items": [
+        {
+          "id": "cirque_show",
+          "type": "activity",
+          "title": "Cirque du Soleil: 'O' Show Tickets",
+          "time": "7:00 PM Show",
+          "details": "Bellagio Theater. Category 1 Seats (Section 103, Row G).",
+          "sharedFiles": ["cirque_o_receipt.pdf"],
+          "profileFiles": {
+            "Gauthier": "tickets/cirque_gauthier.pdf",
+            "Alice": "tickets/cirque_alice.pdf",
+            "Bob": "tickets/cirque_bob.pdf",
+            "Charlie": "tickets/cirque_charlie.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day13",
+      "dayNumber": 13,
+      "title": "Vegas to Zion National Park",
+      "date": "2026-07-13",
+      "location": {
+        "name": "Zion National Park",
+        "latitude": 37.2002,
+        "longitude": -112.9879
+      },
+      "description": "Drive from Vegas to Springdale / Zion National Park (~3 hours). Hike the Riverside Walk in the afternoon.",
+      "items": [
+        {
+          "id": "hotel_zion",
+          "type": "hotel",
+          "title": "Cliffrose Springdale, Curio Collection",
+          "time": "3:00 PM Check-in",
+          "details": "281 Zion Park Blvd, Springdale, UT 84767 (right outside park gates)",
+          "sharedFiles": ["cliffrose_zion.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day14",
+      "dayNumber": 14,
+      "title": "Zion: Angels Landing Hike",
+      "date": "2026-07-14",
+      "location": {
+        "name": "Angels Landing Trail",
+        "latitude": 37.2692,
+        "longitude": -112.9479
+      },
+      "description": "Hike the iconic Angels Landing. Permits are required for the chain section.",
+      "items": [
+        {
+          "id": "angels_landing_permit",
+          "type": "activity",
+          "title": "Angels Landing Seasonal Permit",
+          "time": "9:00 AM - 12:00 PM Slot",
+          "details": "Rangers will verify permits at Scout Lookout. Must start before 12 PM.",
+          "sharedFiles": ["angels_landing_group_permit.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day15",
+      "dayNumber": 15,
+      "title": "Zion to Bryce Canyon",
+      "date": "2026-07-15",
+      "location": {
+        "name": "Bryce Canyon National Park",
+        "latitude": 37.6283,
+        "longitude": -112.1677
+      },
+      "description": "Drive via the Zion-Mount Carmel Highway (~2 hours). See the hoodoos from Sunrise Point and Navajo Loop.",
+      "items": [
+        {
+          "id": "hotel_bryce",
+          "type": "hotel",
+          "title": "The Lodge at Bryce Canyon",
+          "time": "3:00 PM Check-in",
+          "details": "Bryce Canyon National Park, UT 84764",
+          "sharedFiles": ["bryce_lodge_booking.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day16",
+      "dayNumber": 16,
+      "title": "Bryce to Monument Valley",
+      "date": "2026-07-16",
+      "location": {
+        "name": "Monument Valley",
+        "latitude": 36.9980,
+        "longitude": -110.0985
+      },
+      "description": "Drive to Monument Valley (~4.5 hours). Run the 17-mile scenic drive loop and enjoy the sunset from the balcony.",
+      "items": [
+        {
+          "id": "hotel_mv",
+          "type": "hotel",
+          "title": "The View Hotel Monument Valley",
+          "time": "4:00 PM Check-in",
+          "details": "Indian Rte 42, Oljato-Monument Valley, UT 84536 (Premium Cabin rooms)",
+          "sharedFiles": ["view_hotel_booking.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day17",
+      "dayNumber": 17,
+      "title": "Monument Valley to Page & Antelope Canyon",
+      "date": "2026-07-17",
+      "location": {
+        "name": "Antelope Canyon",
+        "latitude": 36.9019,
+        "longitude": -111.4116
+      },
+      "description": "Drive to Page (~2 hours). Guided tour of Lower Antelope Canyon, then sunset at Horseshoe Bend.",
+      "items": [
+        {
+          "id": "antelope_tour",
+          "type": "activity",
+          "title": "Lower Antelope Canyon Tour (Ken's Tours)",
+          "time": "11:00 AM Tour",
+          "details": "Arrive 30 minutes early. No bags allowed inside. Confirmation: #KT-99210.",
+          "sharedFiles": ["antelope_canyon_booking.pdf"]
+        },
+        {
+          "id": "hotel_page",
+          "type": "hotel",
+          "title": "Hyatt Place Page Lake Powell",
+          "time": "3:00 PM Check-in",
+          "details": "1126 N Highway 89, Page, AZ 86040",
+          "sharedFiles": ["hyatt_page_booking.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day18",
+      "dayNumber": 18,
+      "title": "Page to Grand Canyon South Rim",
+      "date": "2026-07-18",
+      "location": {
+        "name": "Grand Canyon South Rim",
+        "latitude": 36.0544,
+        "longitude": -112.1401
+      },
+      "description": "Drive from Page to Grand Canyon (~2.5 hours). Walk the Rim Trail and catch sunset at Mather Point.",
+      "items": [
+        {
+          "id": "hotel_gc",
+          "type": "hotel",
+          "title": "El Tovar Hotel",
+          "time": "3:00 PM Check-in",
+          "details": "9 Village Loop Drive, Grand Canyon Village, AZ 86023",
+          "sharedFiles": ["el_tovar_booking.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day19",
+      "dayNumber": 19,
+      "title": "Hiking the Bright Angel Trail",
+      "date": "2026-07-19",
+      "location": {
+        "name": "Bright Angel Trailhead",
+        "latitude": 36.0573,
+        "longitude": -112.1435
+      },
+      "description": "Hike into the canyon on Bright Angel Trail. Recommend hiking to Indian Garden (~9 miles roundtrip). Start at 6:00 AM to avoid midday heat.",
+      "items": [
+        {
+          "id": "hiking_info",
+          "type": "activity",
+          "title": "Grand Canyon Hiking Safe Guide",
+          "time": "6:00 AM Start",
+          "details": "Carry at least 3 liters of water per person. Eat salty snacks.",
+          "sharedFiles": ["grand_canyon_hiking_guide.pdf"]
+        }
+      ]
+    },
+    {
+      "id": "day20",
+      "dayNumber": 20,
+      "title": "Grand Canyon to Phoenix & Departure",
+      "date": "2026-07-20",
+      "location": {
+        "name": "Phoenix Sky Harbor Airport (PHX)",
+        "latitude": 33.4348,
+        "longitude": -112.0080
+      },
+      "description": "Drive from Grand Canyon to Phoenix (~3.5 hours). Return rental car and board flight to Paris CDG.",
+      "items": [
+        {
+          "id": "flight_back",
+          "type": "flight",
+          "title": "Flight AF083 (PHX to CDG)",
+          "time": "6:30 PM",
+          "details": "Phoenix Sky Harbor Terminal 4. Overnight flight, arrival next day.",
+          "sharedFiles": ["flight_back_info.pdf"],
+          "profileFiles": {
+            "Gauthier": "tickets/ticket_gauthier_flight_back.pdf",
+            "Alice": "tickets/ticket_alice_flight_back.pdf",
+            "Bob": "tickets/ticket_bob_flight_back.pdf",
+            "Charlie": "tickets/ticket_charlie_flight_back.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day21",
+      "dayNumber": 21,
+      "title": "Home Sweet Home",
+      "date": "2026-07-21",
+      "location": {
+        "name": "Paris Charles de Gaulle Airport",
+        "latitude": 49.0097,
+        "longitude": 2.5479
+      },
+      "description": "Landing in Paris CDG at 2:15 PM local time.",
+      "items": []
+    }
+  ]
+}
