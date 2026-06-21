@@ -2,10 +2,30 @@ import http.server
 import socketserver
 import os
 import re
+import ssl
+import subprocess
 
 PORT = 8000
+TOKEN = os.environ.get("TRAVELER_API_KEY", "traveler_secret_token_2026")
 
 class TravelerMockServer(http.server.SimpleHTTPRequestHandler):
+    def check_auth(self):
+        auth_header = self.headers.get('Authorization')
+        token_header = self.headers.get('X-Traveler-Token')
+        
+        expected_bearer = f"Bearer {TOKEN}"
+        
+        if auth_header == expected_bearer or token_header == TOKEN:
+            return True
+            
+        # Send 401 Unauthorized
+        self.send_response(401)
+        self.send_header('Content-type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.end_headers()
+        self.wfile.write(b'{"status": "error", "message": "Unauthorized: Missing or invalid token."}')
+        return False
+
     def generate_minimal_pdf(self, title):
         # Escaping text for PDF
         clean_title = re.sub(r'[()]', '', title)
@@ -59,6 +79,9 @@ startxref
         return content.encode('utf-8', errors='ignore')
 
     def do_GET(self):
+        if not self.check_auth():
+            return
+            
         # Route trip.json
         if self.path == '/trip.json':
             self.send_response(200)
@@ -102,6 +125,9 @@ startxref
             super().do_GET()
 
     def do_HEAD(self):
+        if not self.check_auth():
+            return
+            
         if self.path == '/trip.json' or self.path.endswith('.pdf') or self.path.endswith('.pkpass'):
             self.send_response(200)
             if self.path == '/trip.json':
@@ -116,6 +142,9 @@ startxref
             super().do_HEAD()
 
     def do_POST(self):
+        if not self.check_auth():
+            return
+            
         if self.path == '/trip.json':
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
@@ -150,10 +179,29 @@ if __name__ == '__main__':
     script_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_dir)
     
+    cert_file = 'server.crt'
+    key_file = 'server.key'
+    
+    if not os.path.exists(cert_file) or not os.path.exists(key_file):
+        print("Generating self-signed SSL certificate...")
+        try:
+            subprocess.run([
+                'openssl', 'req', '-new', '-x509', '-keyout', key_file,
+                '-out', cert_file, '-days', '365', '-nodes',
+                '-subj', '/CN=localhost'
+            ], check=True)
+        except Exception as e:
+            print(f"Error generating SSL certificate: {e}")
+            
     handler = TravelerMockServer
+    
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    context.load_cert_chain(certfile=cert_file, keyfile=key_file)
+    
     with socketserver.TCPServer(("", PORT), handler) as httpd:
-        print(f"Traveler Mock Server running at http://localhost:{PORT}")
-        print("Serving trip.json and auto-generating mock PDFs on demand.")
+        httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
+        print(f"Traveler Mock Server running at https://localhost:{PORT}")
+        print("Serving trip.json and auto-generating mock PDFs on demand (HTTPS enabled).")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
