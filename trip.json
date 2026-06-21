@@ -2,7 +2,7 @@
   "tripName": "US East Coast 2026 🇺🇸",
   "startDate": "2026-08-06",
   "endDate": "2026-08-28",
-  "users": ["Gauthier", "Alice", "Bob", "Valtou"],
+  "users": ["Gauthier", "Adrien", "Gaëtan", "Valentin"],
   "emergencyInfo": {
     "numbers": [
       { "label": "US Emergency", "number": "911" },
@@ -32,16 +32,16 @@
           "sharedFiles": ["flight_bf720_info.pdf"],
           "profileFiles": {
             "Gauthier": "tickets/ticket_gauthier_bf720.pdf",
-            "Alice": "tickets/ticket_alice_bf720.pdf",
-            "Bob": "tickets/ticket_bob_bf720.pdf",
-            "Valtou": "tickets/ticket_valtou_bf720.pdf"
+            "Adrien": "tickets/ticket_adrien_bf720.pdf",
+            "Gaëtan": "tickets/ticket_gaetan_bf720.pdf",
+            "Valentin": "tickets/ticket_valentin_bf720.pdf"
           },
           "walletPasses": [],
           "profileWalletPasses": {
             "Gauthier": "passes/pass_gauthier_bf720.pkpass",
-            "Alice": "passes/pass_alice_bf720.pkpass",
-            "Bob": "passes/pass_bob_bf720.pkpass",
-            "Valtou": "passes/pass_valtou_bf720.pkpass"
+            "Adrien": "passes/pass_adrien_bf720.pkpass",
+            "Gaëtan": "passes/pass_gaetan_bf720.pkpass",
+            "Valentin": "passes/pass_valentin_bf720.pkpass"
           }
         },
         {
@@ -217,9 +217,9 @@
           "sharedFiles": ["flight_orlando_booking.pdf"],
           "profileFiles": {
             "Gauthier": "tickets/ticket_gauthier_orlando.pdf",
-            "Alice": "tickets/ticket_alice_orlando.pdf",
-            "Bob": "tickets/ticket_bob_orlando.pdf",
-            "Valtou": "tickets/ticket_valtou_orlando.pdf"
+            "Adrien": "tickets/ticket_adrien_orlando.pdf",
+            "Gaëtan": "tickets/ticket_gaetan_orlando.pdf",
+            "Valentin": "tickets/ticket_valentin_orlando.pdf"
           }
         },
         {
@@ -540,16 +540,16 @@
           "sharedFiles": ["flight_bf743_info.pdf"],
           "profileFiles": {
             "Gauthier": "tickets/ticket_gauthier_bf743.pdf",
-            "Alice": "tickets/ticket_alice_bf743.pdf",
-            "Bob": "tickets/ticket_bob_bf743.pdf",
-            "Valtou": "tickets/ticket_valtou_bf743.pdf"
+            "Adrien": "tickets/ticket_adrien_bf743.pdf",
+            "Gaëtan": "tickets/ticket_gaetan_bf743.pdf",
+            "Valentin": "tickets/ticket_valentin_bf743.pdf"
           },
           "walletPasses": [],
           "profileWalletPasses": {
             "Gauthier": "passes/pass_gauthier_bf743.pkpass",
-            "Alice": "passes/pass_alice_bf743.pkpass",
-            "Bob": "passes/pass_bob_bf743.pkpass",
-            "Valtou": "passes/pass_valtou_bf743.pkpass"
+            "Adrien": "passes/pass_adrien_bf743.pkpass",
+            "Gaëtan": "passes/pass_gaetan_bf743.pkpass",
+            "Valentin": "passes/pass_valentin_bf743.pkpass"
           }
         }
       ]
