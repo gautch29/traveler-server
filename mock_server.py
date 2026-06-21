@@ -214,6 +214,51 @@ startxref
                 self.end_headers()
                 self.wfile.write(f'{{"status": "error", "message": "{str(e)}"}}'.encode('utf-8'))
             return
+            
+        elif self.path == '/upload':
+            filename = self.headers.get('X-Filename')
+            if not filename:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(b'{"status": "error", "message": "Missing X-Filename header."}')
+                return
+                
+            clean_filename = os.path.normpath(filename).lstrip('/')
+            if clean_filename.startswith('..'):
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(b'{"status": "error", "message": "Invalid filename path."}')
+                return
+                
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            
+            try:
+                target_path = clean_filename
+                if os.path.exists('server') and os.path.isdir('server'):
+                    target_path = os.path.join('server', clean_filename)
+                
+                os.makedirs(os.path.dirname(target_path), exist_ok=True)
+                
+                with open(target_path, 'wb') as f:
+                    f.write(post_data)
+                
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(b'{"status": "success"}')
+            except Exception as e:
+                self.send_response(500)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(f'{{"status": "error", "message": "{str(e)}"}}'.encode('utf-8'))
+            return
         else:
             self.send_response(404)
             self.end_headers()
