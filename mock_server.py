@@ -86,21 +86,64 @@ startxref
             self.wfile.write(pdf_data)
             return
             
+        # Route any Wallet pass request dynamically
+        elif self.path.endswith('.pkpass'):
+            pass_data = b"PKPASS_MOCK_BINARY_DATA"
+            self.send_response(200)
+            self.send_header('Content-type', 'application/vnd.apple.pkpass')
+            self.send_header('Content-Length', str(len(pass_data)))
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(pass_data)
+            return
+            
         else:
             # Fallback to normal serving
             super().do_GET()
 
     def do_HEAD(self):
-        if self.path == '/trip.json' or self.path.endswith('.pdf'):
+        if self.path == '/trip.json' or self.path.endswith('.pdf') or self.path.endswith('.pkpass'):
             self.send_response(200)
             if self.path == '/trip.json':
                 self.send_header('Content-type', 'application/json')
-            else:
+            elif self.path.endswith('.pdf'):
                 self.send_header('Content-type', 'application/pdf')
+            else:
+                self.send_header('Content-type', 'application/vnd.apple.pkpass')
             self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
         else:
             super().do_HEAD()
+
+    def do_POST(self):
+        if self.path == '/trip.json':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            
+            try:
+                import json
+                parsed_json = json.loads(post_data.decode('utf-8'))
+                
+                # Save locally
+                target_path = 'trip.json' if os.path.exists('trip.json') else 'server/trip.json'
+                with open(target_path, 'w', encoding='utf-8') as f:
+                    json.dump(parsed_json, f, indent=2, ensure_ascii=False)
+                
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(b'{"status": "success"}')
+            except Exception as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(f'{{"status": "error", "message": "{str(e)}"}}'.encode('utf-8'))
+            return
+        else:
+            self.send_response(404)
+            self.end_headers()
 
 if __name__ == '__main__':
     # Make sure we run in the server directory
