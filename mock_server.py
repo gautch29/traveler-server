@@ -98,6 +98,21 @@ startxref
                     self.wfile.write(f.read())
             return
             
+        # Route expenses.json
+        elif self.path == '/expenses.json':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            try:
+                target_path = 'expenses.json' if os.path.exists('expenses.json') else 'server/expenses.json'
+                with open(target_path, 'rb') as f:
+                    self.wfile.write(f.read())
+            except FileNotFoundError:
+                # Return empty array if not initialized
+                self.wfile.write(b'[]')
+            return
+            
         # Route any PDF request dynamically
         elif self.path.endswith('.pdf'):
             filename = os.path.basename(self.path)
@@ -129,9 +144,9 @@ startxref
         if not self.check_auth():
             return
             
-        if self.path == '/trip.json' or self.path.endswith('.pdf') or self.path.endswith('.pkpass'):
+        if self.path == '/trip.json' or self.path == '/expenses.json' or self.path.endswith('.pdf') or self.path.endswith('.pkpass'):
             self.send_response(200)
-            if self.path == '/trip.json':
+            if self.path == '/trip.json' or self.path == '/expenses.json':
                 self.send_header('Content-type', 'application/json')
             elif self.path.endswith('.pdf'):
                 self.send_header('Content-type', 'application/pdf')
@@ -156,6 +171,34 @@ startxref
                 
                 # Save locally
                 target_path = 'trip.json' if os.path.exists('trip.json') else 'server/trip.json'
+                with open(target_path, 'w', encoding='utf-8') as f:
+                    json.dump(parsed_json, f, indent=2, ensure_ascii=False)
+                
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(b'{"status": "success"}')
+            except Exception as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(f'{{"status": "error", "message": "{str(e)}"}}'.encode('utf-8'))
+            return
+            
+        elif self.path == '/expenses.json':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            
+            try:
+                import json
+                parsed_json = json.loads(post_data.decode('utf-8'))
+                
+                # Save locally
+                target_path = 'expenses.json' if os.path.exists('expenses.json') else 'server/expenses.json'
+                if not os.path.exists(target_path):
+                    target_path = 'expenses.json'
                 with open(target_path, 'w', encoding='utf-8') as f:
                     json.dump(parsed_json, f, indent=2, ensure_ascii=False)
                 
