@@ -62,8 +62,34 @@ startxref
             import urllib.parse
             url_path = self.path.lstrip('/')
             decoded_path = urllib.parse.unquote(url_path)
-            if decoded_path and os.path.exists(decoded_path) and os.path.isfile(decoded_path):
-                super().do_GET()
+            
+            # Check direct file or file in server/ folder (handles project root running)
+            path_candidates = [decoded_path]
+            if os.path.exists('server') and os.path.isdir('server'):
+                path_candidates.append(os.path.join('server', decoded_path))
+                
+            found_path = None
+            for cand in path_candidates:
+                if os.path.exists(cand) and os.path.isfile(cand):
+                    found_path = cand
+                    break
+                    
+            if found_path:
+                content_type = 'application/octet-stream'
+                if found_path.endswith('.pdf'):
+                    content_type = 'application/pdf'
+                elif found_path.endswith('.pkpass'):
+                    content_type = 'application/vnd.apple.pkpass'
+                elif found_path.endswith('.json'):
+                    content_type = 'application/json'
+                    
+                self.send_response(200)
+                self.send_header('Content-type', content_type)
+                self.send_header('Content-Length', str(os.path.getsize(found_path)))
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                with open(found_path, 'rb') as f:
+                    self.wfile.write(f.read())
                 return
 
         if self.path == '/trip.json':
@@ -118,8 +144,32 @@ startxref
             import urllib.parse
             url_path = self.path.lstrip('/')
             decoded_path = urllib.parse.unquote(url_path)
-            if decoded_path and os.path.exists(decoded_path) and os.path.isfile(decoded_path):
-                super().do_HEAD()
+            
+            # Check direct file or file in server/ folder (handles project root running)
+            path_candidates = [decoded_path]
+            if os.path.exists('server') and os.path.isdir('server'):
+                path_candidates.append(os.path.join('server', decoded_path))
+                
+            found_path = None
+            for cand in path_candidates:
+                if os.path.exists(cand) and os.path.isfile(cand):
+                    found_path = cand
+                    break
+                    
+            if found_path:
+                content_type = 'application/octet-stream'
+                if found_path.endswith('.pdf'):
+                    content_type = 'application/pdf'
+                elif found_path.endswith('.pkpass'):
+                    content_type = 'application/vnd.apple.pkpass'
+                elif found_path.endswith('.json'):
+                    content_type = 'application/json'
+                    
+                self.send_response(200)
+                self.send_header('Content-type', content_type)
+                self.send_header('Content-Length', str(os.path.getsize(found_path)))
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
                 return
 
         if self.path == '/trip.json' or self.path == '/expenses.json' or self.path.endswith('.pdf') or self.path.endswith('.pkpass'):
