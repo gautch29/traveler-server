@@ -29,6 +29,7 @@
           "title": "Flight BF720 (ORY to EWR)",
           "time": "6:50 PM",
           "details": "Terminal 4, Paris Orly. Arrival Newark at 9:00 PM. Sandwich & external batteries required.",
+          "flightNumber": "BF720",
           "sharedFiles": ["flight_bf720_info.pdf"],
           "profileFiles": {
             "Gauthier": "tickets/ticket_gauthier_bf720.pdf",
@@ -214,6 +215,7 @@
           "title": "Flight to Orlando",
           "time": "9:30 AM",
           "details": "Verify luggage weights. 3 cabin bags, 1 check-in bag.",
+          "flightNumber": "DL1234",
           "sharedFiles": ["flight_orlando_booking.pdf"],
           "profileFiles": {
             "Gauthier": "tickets/ticket_gauthier_orlando.pdf",
@@ -537,6 +539,7 @@
           "title": "Flight BF743 (MIA to ORY)",
           "time": "11:05 PM",
           "details": "Overnight flight to Paris Orly Terminal 4.",
+          "flightNumber": "BF743",
           "sharedFiles": ["flight_bf743_info.pdf"],
           "profileFiles": {
             "Gauthier": "tickets/ticket_gauthier_bf743.pdf",

@@ -3,8 +3,85 @@ import socketserver
 import os
 import re
 import argparse
+import hashlib
 
 PORT = 8000
+
+def get_flight_status(flight_code):
+    flight_code = flight_code.replace(" ", "").upper()
+    if not flight_code:
+        flight_code = "UNKNOWN"
+        
+    h = hashlib.md5(flight_code.encode('utf-8')).hexdigest()
+    val = int(h, 16)
+    
+    statuses = ["On Time", "On Time", "On Time", "Delayed", "Departed", "Arrived", "Boarding"]
+    status = statuses[val % len(statuses)]
+    
+    delay_mins = 0
+    if status == "Delayed":
+        delay_mins = (val % 8 + 1) * 5
+        
+    gates = ["A12", "B22", "C10", "D45", "E11", "F28", "G3", "H19", "K35"]
+    gate = gates[val % len(gates)]
+    
+    terminals = ["1", "2E", "2F", "3", "4", "A", "B", "C"]
+    terminal = terminals[(val >> 2) % len(terminals)]
+    
+    aircrafts = ["Boeing 777-300ER", "Airbus A350-900", "Boeing 787-9 Dreamliner", "Airbus A330-900neo", "Boeing 737 MAX 9", "Airbus A321neo"]
+    aircraft = aircrafts[(val >> 4) % len(aircrafts)]
+    
+    dep_city = "Paris (CDG)"
+    arr_city = "New York (JFK)"
+    
+    if flight_code.startswith("AF"):
+        dep_city = "Paris (CDG)"
+        arr_city = "New York (JFK)" if val % 2 == 0 else "Los Angeles (LAX)"
+    elif flight_code.startswith("DL"):
+        dep_city = "New York (JFK)"
+        arr_city = "Paris (CDG)" if val % 2 == 0 else "Atlanta (ATL)"
+    elif flight_code.startswith("UA"):
+        dep_city = "San Francisco (SFO)"
+        arr_city = "Paris (CDG)" if val % 2 == 0 else "Chicago (ORD)"
+    elif flight_code.startswith("AA"):
+        dep_city = "Miami (MIA)"
+        arr_city = "Paris (CDG)" if val % 2 == 0 else "Dallas (DFW)"
+    else:
+        cities = ["London (LHR)", "Rome (FCO)", "Madrid (MAD)", "Tokyo (HND)", "Dubai (DXB)", "San Francisco (SFO)", "Miami (MIA)", "Boston (BOS)"]
+        dep_city = cities[val % len(cities)]
+        arr_city = cities[(val + 1) % len(cities)]
+
+    hour = (val % 12) + 1
+    minute = (val % 4) * 15
+    ampm = "AM" if (val % 2 == 0) else "PM"
+    sched_time = f"{hour:02d}:{minute:02d} {ampm}"
+    
+    if delay_mins > 0:
+        tot_mins = hour * 60 + minute + delay_mins
+        est_hour = (tot_mins // 60)
+        est_min = tot_mins % 60
+        est_ampm = ampm
+        if est_hour > 12:
+            est_hour = est_hour % 12
+            if est_hour == 0:
+                est_hour = 12
+        est_time = f"{est_hour:02d}:{est_min:02d} {est_ampm}"
+    else:
+        est_time = sched_time
+        
+    return {
+        "flightNumber": flight_code,
+        "status": status,
+        "gate": gate,
+        "terminal": terminal,
+        "delayMinutes": delay_mins,
+        "scheduledDeparture": sched_time,
+        "estimatedDeparture": est_time,
+        "aircraft": aircraft,
+        "departureCity": dep_city,
+        "arrivalCity": arr_city,
+        "baggageClaim": str((val % 15) + 1)
+    }
 
 class TravelerMockServer(http.server.SimpleHTTPRequestHandler):
     def generate_minimal_pdf(self, title):
@@ -58,6 +135,25 @@ startxref
         return content.encode('utf-8', errors='ignore')
 
     def do_GET(self):
+        if self.path.startswith('/flight-status'):
+            import urllib.parse
+            import json
+            parsed_url = urllib.parse.urlparse(self.path)
+            query_params = urllib.parse.parse_qs(parsed_url.query)
+            flight_code = query_params.get('flight', [''])[0].strip().upper()
+            if not flight_code:
+                parts = parsed_url.path.strip('/').split('/')
+                if len(parts) > 1:
+                    flight_code = parts[1].strip().upper()
+            
+            status_data = get_flight_status(flight_code)
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps(status_data).encode('utf-8'))
+            return
+
         if self.path != '/trip.json' and self.path != '/expenses.json':
             import urllib.parse
             url_path = self.path.lstrip('/')
@@ -140,6 +236,13 @@ startxref
             super().do_GET()
 
     def do_HEAD(self):
+        if self.path.startswith('/flight-status'):
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            return
+
         if self.path != '/trip.json' and self.path != '/expenses.json':
             import urllib.parse
             url_path = self.path.lstrip('/')
