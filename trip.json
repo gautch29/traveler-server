@@ -17,9 +17,9 @@
       "title": "Departure & Arrival in New York",
       "date": "2026-08-06",
       "location": {
-        "name": "Newark Liberty International Airport (EWR)",
-        "latitude": 40.6895,
-        "longitude": -74.1745
+        "name": "Paris Orly Airport (ORY)",
+        "latitude": 48.7262,
+        "longitude": 2.3652
       },
       "description": "Flight BF720 from Paris Orly (ORY) Terminal 4 to Newark (EWR) Terminal B. Train transit to Manhattan hotel.",
       "items": [
