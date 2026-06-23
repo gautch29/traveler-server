@@ -58,6 +58,14 @@ startxref
         return content.encode('utf-8', errors='ignore')
 
     def do_GET(self):
+        if self.path != '/trip.json' and self.path != '/expenses.json':
+            import urllib.parse
+            url_path = self.path.lstrip('/')
+            decoded_path = urllib.parse.unquote(url_path)
+            if decoded_path and os.path.exists(decoded_path) and os.path.isfile(decoded_path):
+                super().do_GET()
+                return
+
         if self.path == '/trip.json':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -106,6 +114,14 @@ startxref
             super().do_GET()
 
     def do_HEAD(self):
+        if self.path != '/trip.json' and self.path != '/expenses.json':
+            import urllib.parse
+            url_path = self.path.lstrip('/')
+            decoded_path = urllib.parse.unquote(url_path)
+            if decoded_path and os.path.exists(decoded_path) and os.path.isfile(decoded_path):
+                super().do_HEAD()
+                return
+
         if self.path == '/trip.json' or self.path == '/expenses.json' or self.path.endswith('.pdf') or self.path.endswith('.pkpass'):
             self.send_response(200)
             if self.path == '/trip.json' or self.path == '/expenses.json':
