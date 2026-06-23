@@ -83,6 +83,59 @@ def get_flight_status(flight_code):
         "baggageClaim": str((val % 15) + 1)
     }
 
+def generate_ai_summary(title, location_name, items):
+    import random
+    if not items:
+        templates = [
+            f"Enjoy a flexible day of free exploration in {location_name}. Discover the local scene, try regional dining, and relax at your own pace.",
+            f"A free day in {location_name} to explore without a set schedule. Ideal for spontaneous discoveries and sightseeing.",
+            f"Free exploration day in {location_name}. Take the time to wander, relax, and explore the city's hidden gems."
+        ]
+        return random.choice(templates)
+        
+    narratives = []
+    
+    # Start sentence
+    first_item = items[0]
+    first_title = first_item.get('title', 'activities')
+    first_time = first_item.get('time', '')
+    first_details = first_item.get('details', '')
+    
+    intro_templates = [
+        f"Begin the day in {location_name} with {first_title} at {first_time} ({first_details}).",
+        f"Kick off your morning in {location_name} experiencing {first_title} scheduled for {first_time}—{first_details}.",
+        f"Your day in {location_name} starts at {first_time} with {first_title}, focusing on {first_details}."
+    ]
+    narratives.append(random.choice(intro_templates))
+    
+    # Middle sentences
+    if len(items) > 2:
+        for item in items[1:-1]:
+            t = item.get('title', '')
+            tm = item.get('time', '')
+            d = item.get('details', '')
+            mid_templates = [
+                f"Next, head over to {t} at {tm} ({d}).",
+                f"Following that, you'll join {t} around {tm}, which involves {d}.",
+                f"Later at {tm}, transition to {t} ({d})."
+            ]
+            narratives.append(random.choice(mid_templates))
+            
+    # Final sentence
+    if len(items) > 1:
+        last_item = items[-1]
+        last_title = last_item.get('title', '')
+        last_time = last_item.get('time', '')
+        last_details = last_item.get('details', '')
+        outro_templates = [
+            f"Conclude the evening with {last_title} at {last_time} ({last_details}).",
+            f"Finally, wrap up your day with {last_title} scheduled at {last_time}—{last_details}.",
+            f"End the day at {last_time} attending {last_title} ({last_details})."
+        ]
+        narratives.append(random.choice(outro_templates))
+        
+    return " ".join(narratives)
+
 class TravelerMockServer(http.server.SimpleHTTPRequestHandler):
     def generate_minimal_pdf(self, title):
         clean_title = re.sub(r'[()]', '', title)
@@ -375,6 +428,31 @@ startxref
                 self.end_headers()
                 self.wfile.write(f'{{"status": "error", "message": "{str(e)}"}}'.encode('utf-8'))
             return
+            
+        elif self.path == '/generate-summary':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            try:
+                import json
+                payload = json.loads(post_data.decode('utf-8'))
+                title = payload.get('title', '')
+                loc_name = payload.get('locationName', '')
+                items = payload.get('items', [])
+                
+                summary = generate_ai_summary(title, loc_name, items)
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({"summary": summary}).encode('utf-8'))
+            except Exception as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(f'{{"status": "error", "message": "{str(e)}"}}'.encode('utf-8'))
+            return
+            
         else:
             self.send_response(404)
             self.end_headers()
