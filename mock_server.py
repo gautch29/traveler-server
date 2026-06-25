@@ -46,6 +46,18 @@ def get_flight_status(flight_code):
     elif flight_code.startswith("AA"):
         dep_city = "Miami (MIA)"
         arr_city = "Paris (CDG)" if val % 2 == 0 else "Dallas (DFW)"
+    elif flight_code.startswith("BF720"):
+        dep_city = "Paris (ORY)"
+        arr_city = "Newark (EWR)"
+    elif flight_code.startswith("BF743"):
+        dep_city = "Miami (MIA)"
+        arr_city = "Paris (ORY)"
+    elif flight_code.startswith("BF"):
+        dep_city = "Paris (ORY)"
+        arr_city = "Miami (MIA)" if val % 2 == 0 else "Newark (EWR)"
+    elif flight_code.startswith("B62523") or flight_code.startswith("B6"):
+        dep_city = "Washington (DCA)"
+        arr_city = "Orlando (MCO)"
     else:
         cities = ["London (LHR)", "Rome (FCO)", "Madrid (MAD)", "Tokyo (HND)", "Dubai (DXB)", "San Francisco (SFO)", "Miami (MIA)", "Boston (BOS)"]
         dep_city = cities[val % len(cities)]
