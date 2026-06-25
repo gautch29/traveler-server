@@ -263,6 +263,25 @@ startxref
                 self.wfile.write(f.read())
             return
             
+        elif self.path == '/list-files':
+            import json
+            import glob
+            files = []
+            for prefix in ['', 'server/']:
+                for folder in ['tickets', 'passes']:
+                    pattern = os.path.join(prefix, folder, '*')
+                    for path in glob.glob(pattern):
+                        if os.path.isfile(path):
+                            rel_path = os.path.relpath(path, prefix if prefix else '.')
+                            if rel_path not in files:
+                                files.append(rel_path)
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps(files).encode('utf-8'))
+            return
+            
         elif self.path == '/expenses.json':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
