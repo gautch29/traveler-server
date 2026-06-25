@@ -3,5 +3,4 @@ __pycache__/
 .DS_Store
 *.key
 *.crt
-trip.json
 expenses.json
