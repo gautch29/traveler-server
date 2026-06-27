@@ -8,57 +8,60 @@
       { "label": "US Emergency", "number": "911" },
       { "label": "Alamo Roadside", "number": "1-800-803-4444" }
     ],
-    "notes": "Ensure ESTA is printed and valid. All hotel reservations have been added. iCloud Budget Sheet: https://www.icloud.com/numbers/049Fp8ziIAp-0vaCNuU40m0-w#Budget_USA"
+    "notes": "Ensure ESTA is printed and valid. Stays and flights architecture loaded. iCloud Budget Sheet: https://www.icloud.com/numbers/049Fp8ziIAp-0vaCNuU40m0-w#Budget_USA"
   },
   "steps": [
     {
-      "id": "day1",
-      "dayNumber": 1,
-      "title": "Departure & Arrival in New York",
+      "id": "step_flight_bf720",
+      "type": "flight",
+      "title": "Flight Paris to New York",
       "date": "2026-08-06",
-      "location": {
-        "name": "Paris Orly Airport (ORY)",
-        "latitude": 48.7262,
-        "longitude": 2.3652
-      },
-      "description": "Flight BF720 from Paris Orly (ORY) Terminal 4 to Newark (EWR) Terminal B. Train transit to SoHo hotel check-in.",
-      "items": [
-        {
-          "id": "flight_bf720",
-          "type": "flight",
-          "title": "Flight BF720 (ORY to EWR)",
-          "time": "6:50 PM",
-          "details": "Terminal 4, Paris Orly. Arrival Newark at 9:00 PM. French bee airlines.",
-          "flightNumber": "BF720",
-          "sharedFiles": ["flight_bf720_info.pdf"],
-          "profileFiles": {
-            "Gauthier": "tickets/ticket_gauthier_bf720.pdf",
-            "Adrien": "tickets/ticket_adrien_bf720.pdf",
-            "Gaëtan": "tickets/ticket_gaetan_bf720.pdf",
-            "Valentin": "tickets/ticket_valentin_bf720.pdf"
-          },
-          "walletPasses": [],
-          "profileWalletPasses": {
-            "Gauthier": "passes/pass_gauthier_bf720.pkpass",
-            "Adrien": "passes/pass_adrien_bf720.pkpass",
-            "Gaëtan": "passes/pass_gaetan_bf720.pkpass",
-            "Valentin": "passes/pass_valentin_bf720.pkpass"
-          }
+      "flightInfo": {
+        "flightNumber": "BF720",
+        "airline": "French bee",
+        "departureAirport": {
+          "name": "Paris Orly Airport (ORY)",
+          "latitude": 48.7262,
+          "longitude": 2.3652
         },
-        {
-          "id": "train_newark_manhattan",
-          "type": "train",
-          "title": "Newark Airport Express Train",
-          "time": "9:30 PM",
-          "details": "Take AirTrain from Terminal B to Newark Airport Station, then NJ Transit train to NY Penn Station.",
-          "sharedFiles": ["train_newark_express.pdf"]
+        "arrivalAirport": {
+          "name": "Newark Liberty International Airport (EWR)",
+          "latitude": 40.6895,
+          "longitude": -74.1745
         },
-        {
+        "departureTime": "6:50 PM",
+        "arrivalTime": "9:00 PM",
+        "date": "2026-08-06",
+        "details": "Terminal 4 at Orly. Terminal B at Newark. Check-in luggage weights. Custom declarations required.",
+        "sharedFiles": ["flight_bf720_info.pdf"],
+        "profileFiles": {
+          "Gauthier": "tickets/ticket_gauthier_bf720.pdf",
+          "Adrien": "tickets/ticket_adrien_bf720.pdf",
+          "Gaëtan": "tickets/ticket_gaetan_bf720.pdf",
+          "Valentin": "tickets/ticket_valentin_bf720.pdf"
+        },
+        "walletPasses": [],
+        "profileWalletPasses": {
+          "Gauthier": "passes/pass_gauthier_bf720.pkpass",
+          "Adrien": "passes/pass_adrien_bf720.pkpass",
+          "Gaëtan": "passes/pass_gaetan_bf720.pkpass",
+          "Valentin": "passes/pass_valentin_bf720.pkpass"
+        }
+      }
+    },
+    {
+      "id": "step_stay_ny",
+      "type": "stay",
+      "title": "Stay in New York",
+      "date": "2026-08-06",
+      "stayInfo": {
+        "cityName": "New York",
+        "hotel": {
           "id": "hotel_ny",
           "type": "hotel",
           "title": "Four Points by Sheraton Manhattan SoHo Village",
           "time": "10:30 PM",
-          "details": "Check-in confirmation: 5940.725.103. PIN: 2628. SoHo location. Late arrival request submitted.",
+          "details": "Check-in confirmation: 5940.725.103. PIN: 2628. SoHo location. Late arrival requested.",
           "sharedFiles": ["tickets/Hotel_NY.pdf"],
           "mapPlace": {
             "name": "Four Points by Sheraton Manhattan SoHo Village",
@@ -70,180 +73,178 @@
             "openingHours": "Check-in: 3:00 PM • Check-out: 12:00 PM",
             "description": "Premium hotel located in SoHo. Cozy rooms with two queen beds, free wired internet, and steps away from the subway."
           }
-        }
-      ]
-    },
-    {
-      "id": "day2",
-      "dayNumber": 2,
-      "title": "Central Park & Museum of Natural History",
-      "date": "2026-08-07",
-      "location": {
-        "name": "American Museum of Natural History",
-        "latitude": 40.7813,
-        "longitude": -73.9741
-      },
-      "description": "Matin: Musée d'histoire naturelle. Midi: Central Park cookies & Apple Store. Afternoon: Top of the Rock, Grand Central and Library.",
-      "items": [
-        {
-          "id": "natural_history",
-          "type": "activity",
-          "title": "Museum of Natural History",
-          "time": "10:00 AM",
-          "details": "Requires New York CityPASS entry reservation.",
-          "sharedFiles": ["new_york_citypass.pdf"],
-          "mapPlace": {
-            "name": "American Museum of Natural History",
-            "address": "200 Central Park West, New York, NY 10024, United States",
-            "phoneNumber": "+1 212 769 5100",
-            "websiteURL": "https://www.amnh.org",
-            "latitude": 40.7813,
-            "longitude": -73.9741,
-            "openingHours": "Wednesday–Sunday: 10:00 AM – 5:30 PM",
-            "description": "A world-renowned scientific and cultural institution. Explore the dinosaur halls, ocean life, and the Hayden Planetarium."
-          }
         },
-        {
-          "id": "top_of_the_rock",
-          "type": "activity",
-          "title": "Top of the Rock Observation Deck",
-          "time": "4:00 PM",
-          "details": "Rockefeller Center. Beautiful sunset views over Manhattan.",
-          "sharedFiles": ["new_york_citypass.pdf"],
-          "mapPlace": {
-            "name": "Top of the Rock",
-            "address": "30 Rockefeller Plaza, New York, NY 10112, United States",
-            "phoneNumber": "+1 212 698 2000",
-            "websiteURL": "https://www.rockefellercenter.com",
-            "latitude": 40.7587,
-            "longitude": -73.9787,
-            "openingHours": "Monday–Sunday: 9:00 AM – 12:00 AM",
-            "description": "Breathtaking 360-degree panoramic views of New York City, including Central Park and the Empire State Building."
+        "days": [
+          {
+            "id": "ny_day1",
+            "dayNumber": 1,
+            "date": "2026-08-06",
+            "title": "Arrival & Newark Transit",
+            "description": "Landed at Newark. Take the Airport Express train to Penn Station and check-in to Four Points SoHo.",
+            "items": [
+              {
+                "id": "train_newark_manhattan",
+                "type": "train",
+                "title": "Newark Airport Express Train",
+                "time": "9:30 PM",
+                "details": "Take AirTrain from Terminal B to Newark Airport Station, then NJ Transit train to NY Penn Station.",
+                "sharedFiles": ["train_newark_express.pdf"]
+              }
+            ]
+          },
+          {
+            "id": "ny_day2",
+            "dayNumber": 2,
+            "date": "2026-08-07",
+            "title": "Central Park & Natural History",
+            "description": "Matin: Musée d'histoire naturelle. Midi: Central Park cookies & Apple Store. Afternoon: Top of the Rock, Grand Central and Library.",
+            "items": [
+              {
+                "id": "natural_history",
+                "type": "activity",
+                "title": "Museum of Natural History",
+                "time": "10:00 AM",
+                "details": "Requires New York CityPASS entry reservation.",
+                "sharedFiles": ["new_york_citypass.pdf"],
+                "mapPlace": {
+                  "name": "American Museum of Natural History",
+                  "address": "200 Central Park West, New York, NY 10024, United States",
+                  "phoneNumber": "+1 212 769 5100",
+                  "websiteURL": "https://www.amnh.org",
+                  "latitude": 40.7813,
+                  "longitude": -73.9741,
+                  "openingHours": "Wednesday–Sunday: 10:00 AM – 5:30 PM",
+                  "description": "A world-renowned scientific and cultural institution. Explore the dinosaur halls, ocean life, and the Hayden Planetarium."
+                }
+              },
+              {
+                "id": "top_of_the_rock",
+                "type": "activity",
+                "title": "Top of the Rock Observation Deck",
+                "time": "4:00 PM",
+                "details": "Rockefeller Center. Beautiful sunset views over Manhattan.",
+                "sharedFiles": ["new_york_citypass.pdf"],
+                "mapPlace": {
+                  "name": "Top of the Rock",
+                  "address": "30 Rockefeller Plaza, New York, NY 10112, United States",
+                  "phoneNumber": "+1 212 698 2000",
+                  "websiteURL": "https://www.rockefellercenter.com",
+                  "latitude": 40.7587,
+                  "longitude": -73.9787,
+                  "openingHours": "Monday–Sunday: 9:00 AM – 12:00 AM",
+                  "description": "Breathtaking 360-degree panoramic views of New York City, including Central Park and the Empire State Building."
+                }
+              }
+            ]
+          },
+          {
+            "id": "ny_day3",
+            "dayNumber": 3,
+            "date": "2026-08-08",
+            "title": "High Line & Times Square",
+            "description": "Matin: Musée de l'air et de l'espace. Midi: High Line, Little Island, Chelsea Market. Soir: Empire State Building, Broadway, Times Square.",
+            "items": [
+              {
+                "id": "intrepid_museum",
+                "type": "activity",
+                "title": "Intrepid Air & Space Museum",
+                "time": "9:30 AM",
+                "details": "Pier 86, W 46th St. CityPASS entry.",
+                "sharedFiles": ["new_york_citypass.pdf"],
+                "mapPlace": {
+                  "name": "Intrepid Museum",
+                  "address": "Pier 86, W 46th St, New York, NY 10036, United States",
+                  "phoneNumber": "+1 212 245 0072",
+                  "websiteURL": "https://www.intrepidmuseum.org",
+                  "latitude": 40.7645,
+                  "longitude": -74.0007,
+                  "openingHours": "Monday–Sunday: 10:00 AM – 5:00 PM",
+                  "description": "Historical aircraft carrier museum showcasing the space shuttle Enterprise, British Airways Concorde, and legendary fighter jets."
+                }
+              },
+              {
+                "id": "empire_state",
+                "type": "activity",
+                "title": "Empire State Building",
+                "time": "8:30 PM",
+                "details": "86th Floor Observatory. CityPASS entry.",
+                "sharedFiles": ["new_york_citypass.pdf"],
+                "mapPlace": {
+                  "name": "Empire State Building",
+                  "address": "20 W 34th St, New York, NY 10001, United States",
+                  "phoneNumber": "+1 212 736 3100",
+                  "websiteURL": "https://www.esbnyc.com",
+                  "latitude": 40.7484,
+                  "longitude": -73.9857,
+                  "openingHours": "Monday–Sunday: 9:00 AM – 12:00 AM",
+                  "description": "The world's most famous Art Deco skyscraper. Views from the 86th-floor open-air observatory are spectacular at night."
+                }
+              }
+            ]
+          },
+          {
+            "id": "ny_day4",
+            "dayNumber": 4,
+            "date": "2026-08-09",
+            "title": "Madison Square Garden",
+            "description": "Matin/Midi: Chinatown, Little Italy, Tribeca, Joe's Pizza. Afternoon: Grand Central, Library, and shopping (Macy's, Aéropostale). Soir: Rooftop.",
+            "items": [
+              {
+                "id": "msg_tour",
+                "type": "activity",
+                "title": "Madison Square Garden Tour",
+                "time": "3:00 PM",
+                "details": "Explore the world's most famous arena.",
+                "sharedFiles": ["msg_tour_ticket.pdf"],
+                "mapPlace": {
+                  "name": "Madison Square Garden",
+                  "address": "4 Pennsylvania Plaza, New York, NY 10001, United States",
+                  "phoneNumber": "+1 212 465 6000",
+                  "websiteURL": "https://www.msg.com",
+                  "latitude": 40.7505,
+                  "longitude": -73.9934,
+                  "openingHours": "Monday–Sunday: 10:00 AM – 4:00 PM",
+                  "description": "Historic multi-purpose indoor arena in Midtown Manhattan, home to the NY Knicks and NY Rangers."
+                }
+              }
+            ]
           }
-        }
-      ]
+        ]
+      }
     },
     {
-      "id": "day3",
-      "dayNumber": 3,
-      "title": "High Line, Chelsea & Times Square",
-      "date": "2026-08-08",
-      "location": {
-        "name": "Intrepid Sea, Air & Space Museum",
-        "latitude": 40.7645,
-        "longitude": -74.0007
-      },
-      "description": "Matin: Musée de l'air et de l'espace. Midi: High Line, Little Island, Chelsea Market. Soir: Empire State Building, Broadway, Times Square.",
-      "items": [
-        {
-          "id": "intrepid_museum",
-          "type": "activity",
-          "title": "Intrepid Air & Space Museum",
-          "time": "9:30 AM",
-          "details": "Pier 86, W 46th St. CityPASS entry.",
-          "sharedFiles": ["new_york_citypass.pdf"],
-          "mapPlace": {
-            "name": "Intrepid Museum",
-            "address": "Pier 86, W 46th St, New York, NY 10036, United States",
-            "phoneNumber": "+1 212 245 0072",
-            "websiteURL": "https://www.intrepidmuseum.org",
-            "latitude": 40.7645,
-            "longitude": -74.0007,
-            "openingHours": "Monday–Sunday: 10:00 AM – 5:00 PM",
-            "description": "Historical aircraft carrier museum showcasing the space shuttle Enterprise, British Airways Concorde, and legendary fighter jets."
-          }
-        },
-        {
-          "id": "empire_state",
-          "type": "activity",
-          "title": "Empire State Building",
-          "time": "8:30 PM",
-          "details": "86th Floor Observatory. CityPASS entry.",
-          "sharedFiles": ["new_york_citypass.pdf"],
-          "mapPlace": {
-            "name": "Empire State Building",
-            "address": "20 W 34th St, New York, NY 10001, United States",
-            "phoneNumber": "+1 212 736 3100",
-            "websiteURL": "https://www.esbnyc.com",
-            "latitude": 40.7484,
-            "longitude": -73.9857,
-            "openingHours": "Monday–Sunday: 9:00 AM – 12:00 AM",
-            "description": "The world's most famous Art Deco skyscraper. Views from the 86th-floor open-air observatory are spectacular at night."
-          }
-        }
-      ]
-    },
-    {
-      "id": "day4",
-      "dayNumber": 4,
-      "title": "Manhattan Districts & Madison Square Garden",
-      "date": "2026-08-09",
-      "location": {
-        "name": "Madison Square Garden",
-        "latitude": 40.7505,
-        "longitude": -73.9934
-      },
-      "description": "Matin/Midi: Chinatown, Little Italy, Tribeca, Joe's Pizza. Afternoon: Grand Central, Library, and shopping (Macy's, Aéropostale). Soir: Rooftop.",
-      "items": [
-        {
-          "id": "msg_tour",
-          "type": "activity",
-          "title": "Madison Square Garden Tour",
-          "time": "3:00 PM",
-          "details": "Explore the world's most famous arena.",
-          "sharedFiles": ["msg_tour_ticket.pdf"],
-          "mapPlace": {
-            "name": "Madison Square Garden",
-            "address": "4 Pennsylvania Plaza, New York, NY 10001, United States",
-            "phoneNumber": "+1 212 465 6000",
-            "websiteURL": "https://www.msg.com",
-            "latitude": 40.7505,
-            "longitude": -73.9934,
-            "openingHours": "Monday–Sunday: 10:00 AM – 4:00 PM",
-            "description": "Historic multi-purpose indoor arena in Midtown Manhattan, home to the NY Knicks and NY Rangers."
-          }
-        }
-      ]
-    },
-    {
-      "id": "day5",
-      "dayNumber": 5,
-      "title": "Financial District & Amtrak to Washington",
+      "id": "step_train_ny_dc",
+      "type": "train",
+      "title": "Amtrak Train to Washington",
       "date": "2026-08-10",
-      "location": {
-        "name": "Moynihan Train Hall",
-        "latitude": 40.7523,
-        "longitude": -73.9996
-      },
-      "description": "Matin/Midi: Financial District, One World Trade Center, 9/11 Memorial. Afternoon: Head to Penn Station for the Amtrak train to Washington DC. Check-in to Courtyard Capitol.",
-      "items": [
-        {
-          "id": "oneworld",
-          "type": "activity",
-          "title": "One World Observatory",
-          "time": "10:00 AM",
-          "details": "Observe Manhattan from the tallest building in the US.",
-          "sharedFiles": ["one_world_tickets.pdf"],
-          "mapPlace": {
-            "name": "One World Observatory",
-            "address": "117 West St, New York, NY 10007, United States",
-            "phoneNumber": "+1 212 341 7300",
-            "websiteURL": "https://www.oneworldobservatory.com",
-            "latitude": 40.713,
-            "longitude": -74.0135,
-            "openingHours": "Monday–Sunday: 9:00 AM – 9:00 PM",
-            "description": "Observation deck spanning floors 100-102 of the One World Trade Center, offering high-speed SkyPod elevators and digital exhibits."
-          }
+      "flightInfo": {
+        "flightNumber": "Train 175",
+        "airline": "Amtrak",
+        "departureAirport": {
+          "name": "Moynihan Train Hall at Penn Station (NY)",
+          "latitude": 40.7523,
+          "longitude": -73.9996
         },
-        {
-          "id": "amtrak_175",
-          "type": "train",
-          "title": "Amtrak Train 175 (NY to DC)",
-          "time": "7:52 PM",
-          "details": "Depart Moynihan Train Hall at Penn Station at 7:52 PM, arrive Union Station at 11:15 PM. Reservation: 03BCDO. Ticket: 1150608565323. 4 Coach Seats.",
-          "sharedFiles": ["tickets/Amtrak_NY_DC.png"]
+        "arrivalAirport": {
+          "name": "Washington Union Station (WAS)",
+          "latitude": 38.8974,
+          "longitude": -77.0064
         },
-        {
+        "departureTime": "7:52 PM",
+        "arrivalTime": "11:15 PM",
+        "date": "2026-08-10",
+        "details": "Amtrak Northeast Regional Train 175. Reservation: 03BCDO. Ticket: 1150608565323. 4 Coach Seats.",
+        "sharedFiles": ["tickets/Amtrak_NY_DC.png"]
+      }
+    },
+    {
+      "id": "step_stay_dc",
+      "type": "stay",
+      "title": "Stay in Washington",
+      "date": "2026-08-10",
+      "stayInfo": {
+        "cityName": "Washington",
+        "hotel": {
           "id": "hotel_washington",
           "type": "hotel",
           "title": "Courtyard Washington, DC/U.S. Capitol",
@@ -260,63 +261,98 @@
             "openingHours": "Check-in: 4:00 PM • Check-out: 12:00 PM",
             "description": "Modern hotel in Northeast Washington, close to the U.S. Capitol and Union Station. Free high-speed WiFi and pool access."
           }
-        }
-      ]
-    },
-    {
-      "id": "day6",
-      "dayNumber": 6,
-      "title": "Washington DC Monuments Tour",
-      "date": "2026-08-11",
-      "location": {
-        "name": "The National Mall",
-        "latitude": 38.8893,
-        "longitude": -77.0365
-      },
-      "description": "Visite: Capitol, Supreme Court, Washington Monument, White House, WWII, Lincoln & Jefferson Memorials.",
-      "items": [
-        {
-          "id": "capitol_visit",
-          "type": "activity",
-          "title": "US Capitol Tour",
-          "time": "10:00 AM",
-          "details": "Guided tour of the crypt, rotunda, and National Statuary Hall.",
-          "sharedFiles": ["capitol_tour_booking.pdf"],
-          "mapPlace": {
-            "name": "United States Capitol",
-            "address": "First St SE, Washington, DC 20004, United States",
-            "phoneNumber": "+1 202 226 8000",
-            "websiteURL": "https://www.visitthecapitol.gov",
-            "latitude": 38.8899,
-            "longitude": -77.0091,
-            "openingHours": "Monday–Saturday: 8:30 AM – 4:30 PM",
-            "description": "The home of the United States Congress and the seat of the legislative branch of the U.S. federal government."
+        },
+        "days": [
+          {
+            "id": "dc_day1",
+            "dayNumber": 5,
+            "date": "2026-08-10",
+            "title": "Financial District & Transit",
+            "description": "Matin/Midi: Financial District, One World Trade Center, 9/11 Memorial. Evening: Amtrak train from NY to Washington DC. Check-in to hotel.",
+            "items": [
+              {
+                "id": "oneworld",
+                "type": "activity",
+                "title": "One World Observatory",
+                "time": "10:00 AM",
+                "details": "Observe Manhattan from the tallest building in the US.",
+                "sharedFiles": ["one_world_tickets.pdf"],
+                "mapPlace": {
+                  "name": "One World Observatory",
+                  "address": "117 West St, New York, NY 10007, United States",
+                  "phoneNumber": "+1 212 341 7300",
+                  "websiteURL": "https://www.oneworldobservatory.com",
+                  "latitude": 40.713,
+                  "longitude": -74.0135,
+                  "openingHours": "Monday–Sunday: 9:00 AM – 9:00 PM",
+                  "description": "Observation deck spanning floors 100-102 of the One World Trade Center, offering high-speed SkyPod elevators and digital exhibits."
+                }
+              }
+            ]
+          },
+          {
+            "id": "dc_day2",
+            "dayNumber": 6,
+            "date": "2026-08-11",
+            "title": "Monuments & Capitol Tour",
+            "description": "Visite: Capitol, Supreme Court, Washington Monument, White House, WWII, Lincoln & Jefferson Memorials.",
+            "items": [
+              {
+                "id": "capitol_visit",
+                "type": "activity",
+                "title": "US Capitol Tour",
+                "time": "10:00 AM",
+                "details": "Guided tour of the crypt, rotunda, and National Statuary Hall.",
+                "sharedFiles": ["capitol_tour_booking.pdf"],
+                "mapPlace": {
+                  "name": "United States Capitol",
+                  "address": "First St SE, Washington, DC 20004, United States",
+                  "phoneNumber": "+1 202 226 8000",
+                  "websiteURL": "https://www.visitthecapitol.gov",
+                  "latitude": 38.8899,
+                  "longitude": -77.0091,
+                  "openingHours": "Monday–Saturday: 8:30 AM – 4:30 PM",
+                  "description": "The home of the United States Congress and the seat of the legislative branch of the U.S. federal government."
+                }
+              }
+            ]
           }
-        }
-      ]
+        ]
+      }
     },
     {
-      "id": "day7",
-      "dayNumber": 7,
+      "id": "step_flight_dc_orlando",
+      "type": "flight",
       "title": "Flight Washington to Orlando",
       "date": "2026-08-12",
-      "location": {
-        "name": "Orlando International Airport (MCO)",
-        "latitude": 28.4312,
-        "longitude": -81.3081
-      },
-      "description": "Evening: Fly from Washington to Orlando. Check-in to Orlando hotel. City exploration.",
-      "items": [
-        {
-          "id": "flight_orlando",
-          "type": "flight",
-          "title": "Flight to Orlando (DCA to MCO)",
-          "time": "6:55 PM",
-          "details": "JetBlue Flight B62523. Depart DCA 6:55 PM, arrive MCO 9:17 PM. Booking reference: RAMSUJ. Economy class.",
-          "flightNumber": "B62523",
-          "sharedFiles": ["tickets/JetBlue_DCA_MCO.png"]
+      "flightInfo": {
+        "flightNumber": "B62523",
+        "airline": "JetBlue",
+        "departureAirport": {
+          "name": "Ronald Reagan Washington National Airport (DCA)",
+          "latitude": 38.8512,
+          "longitude": -77.0402
         },
-        {
+        "arrivalAirport": {
+          "name": "Orlando International Airport (MCO)",
+          "latitude": 28.4312,
+          "longitude": -81.3081
+        },
+        "departureTime": "6:55 PM",
+        "arrivalTime": "9:17 PM",
+        "date": "2026-08-12",
+        "details": "JetBlue Flight B62523. Booking reference: RAMSUJ. Economy class.",
+        "sharedFiles": ["tickets/JetBlue_DCA_MCO.png"]
+      }
+    },
+    {
+      "id": "step_stay_orlando",
+      "type": "stay",
+      "title": "Stay in Orlando",
+      "date": "2026-08-12",
+      "stayInfo": {
+        "cityName": "Orlando",
+        "hotel": {
           "id": "hotel_orlando",
           "type": "hotel",
           "title": "La Quinta by Wyndham Orlando Universal area",
@@ -333,189 +369,156 @@
             "openingHours": "Check-in: 3:00 PM • Check-out: 11:00 AM",
             "description": "Convenient hotel located near Universal Studios Orlando, offering a free shuttle, complimentary breakfast, and outdoor pool."
           }
-        }
-      ]
-    },
-    {
-      "id": "day8",
-      "dayNumber": 8,
-      "title": "Universal Epic Universe",
-      "date": "2026-08-13",
-      "location": {
-        "name": "Universal Epic Universe",
-        "latitude": 28.4239,
-        "longitude": -81.4429
-      },
-      "description": "Full day at the brand-new Universal Epic Universe theme park. Mind-blowing new worlds.",
-      "items": [
-        {
-          "id": "epic_universe",
-          "type": "activity",
-          "title": "Epic Universe Theme Park",
-          "time": "9:00 AM",
-          "details": "Single-day dated ticket. Gates open at 9 AM.",
-          "sharedFiles": ["epic_universe_group.pdf"]
-        }
-      ]
-    },
-    {
-      "id": "day9",
-      "dayNumber": 9,
-      "title": "Busch Gardens Tampa & Mötley Crüe Concert",
-      "date": "2026-08-14",
-      "location": {
-        "name": "Busch Gardens Tampa Bay",
-        "latitude": 28.0372,
-        "longitude": -82.4194
-      },
-      "description": "Day: Thrill rides and animals at Busch Gardens Tampa. Evening: Mötley Crüe concert in Tampa.",
-      "items": [
-        {
-          "id": "busch_gardens",
-          "type": "activity",
-          "title": "Busch Gardens Tampa",
-          "time": "9:30 AM",
-          "details": "Includes 1-day entry + free extra day.",
-          "sharedFiles": ["busch_gardens_booking.pdf"],
-          "mapPlace": {
-            "name": "Busch Gardens Tampa Bay",
-            "address": "10165 McKinley Dr, Tampa, FL 33612, United States",
-            "phoneNumber": "+1 813 884 4386",
-            "websiteURL": "https://buschgardens.com/tampa/",
-            "latitude": 28.0372,
-            "longitude": -82.4194,
-            "openingHours": "Monday–Sunday: 10:00 AM – 6:00 PM",
-            "description": "A 335-acre African-themed animal theme park featuring world-class roller coasters, animal habitats, and live shows."
-          }
         },
-        {
-          "id": "motley_concert",
-          "type": "activity",
-          "title": "Mötley Crüe Live Concert",
-          "time": "7:30 PM",
-          "details": "Tampa Arena venue. Heavy metal night.",
-          "sharedFiles": ["motley_crue_tickets.pdf"]
-        }
-      ]
-    },
-    {
-      "id": "day10",
-      "dayNumber": 10,
-      "title": "Disney Hollywood Studios",
-      "date": "2026-08-15",
-      "location": {
-        "name": "Disney's Hollywood Studios",
-        "latitude": 28.3575,
-        "longitude": -81.5583
-      },
-      "description": "Full day exploring Star Wars: Galaxy's Edge and Tower of Terror at Disney's Hollywood Studios.",
-      "items": [
-        {
-          "id": "disney_studios",
-          "type": "activity",
-          "title": "Disney Hollywood Studios",
-          "time": "8:30 AM",
-          "details": "Park reservation confirmed. Star Wars rise of resistance early queue recommended.",
-          "sharedFiles": ["disney_hollywood_tickets.pdf"]
-        }
-      ]
-    },
-    {
-      "id": "day11",
-      "dayNumber": 11,
-      "title": "Kennedy Space Center & Bioluminescence",
-      "date": "2026-08-16",
-      "location": {
-        "name": "Kennedy Space Center",
-        "latitude": 28.5729,
-        "longitude": -80.6490
-      },
-      "description": "Day: Rockets and shuttles at KSC. Rocket launch watch. Night: Bioluminescence Kayaking at Space Coast.",
-      "items": [
-        {
-          "id": "ksc_visit",
-          "type": "activity",
-          "title": "Kennedy Space Center Visitor Complex",
-          "time": "9:00 AM",
-          "details": "Explore Saturn V rocket and Space Shuttle Atlantis.",
-          "sharedFiles": ["ksc_tickets.pdf"],
-          "mapPlace": {
-            "name": "Kennedy Space Center Visitor Complex",
-            "address": "Space Commerce Way, Merritt Island, FL 32953, United States",
-            "phoneNumber": "+1 855 437 2031",
-            "websiteURL": "https://www.kennedyspacecenter.com",
-            "latitude": 28.5729,
-            "longitude": -80.6490,
-            "openingHours": "Monday–Sunday: 9:00 AM – 5:00 PM",
-            "description": "Fascinating spaceport complex showcasing real spacecraft, simulated missions, astronaut interactions, and historical launch pads."
+        "days": [
+          {
+            "id": "orl_day1",
+            "dayNumber": 7,
+            "date": "2026-08-12",
+            "title": "Arrival in Orlando",
+            "description": "Late flight arrival at MCO. Pick up Alamo SUV rental and drive to La Quinta hotel.",
+            "items": []
+          },
+          {
+            "id": "orl_day2",
+            "dayNumber": 8,
+            "date": "2026-08-13",
+            "title": "Universal Epic Universe",
+            "description": "Full day at the brand-new Universal Epic Universe theme park. Mind-blowing new worlds.",
+            "items": [
+              {
+                "id": "epic_universe",
+                "type": "activity",
+                "title": "Epic Universe Theme Park",
+                "time": "9:00 AM",
+                "details": "Single-day dated ticket. Gates open at 9 AM.",
+                "sharedFiles": ["epic_universe_group.pdf"]
+              }
+            ]
+          },
+          {
+            "id": "orl_day3",
+            "dayNumber": 9,
+            "date": "2026-08-14",
+            "title": "Busch Gardens Tampa & Concert",
+            "description": "Day: Thrill rides and animals at Busch Gardens Tampa. Evening: Mötley Crüe concert in Tampa.",
+            "items": [
+              {
+                "id": "busch_gardens",
+                "type": "activity",
+                "title": "Busch Gardens Tampa",
+                "time": "9:30 AM",
+                "details": "Includes 1-day entry + free extra day.",
+                "sharedFiles": ["busch_gardens_booking.pdf"],
+                "mapPlace": {
+                  "name": "Busch Gardens Tampa Bay",
+                  "address": "10165 McKinley Dr, Tampa, FL 33612, United States",
+                  "phoneNumber": "+1 813 884 4386",
+                  "websiteURL": "https://buschgardens.com/tampa/",
+                  "latitude": 28.0372,
+                  "longitude": -82.4194,
+                  "openingHours": "Monday–Sunday: 10:00 AM – 6:00 PM",
+                  "description": "A 335-acre African-themed animal theme park featuring world-class roller coasters, animal habitats, and live shows."
+                }
+              },
+              {
+                "id": "motley_concert",
+                "type": "activity",
+                "title": "Mötley Crüe Live Concert",
+                "time": "7:30 PM",
+                "details": "Tampa Arena venue. Heavy metal night.",
+                "sharedFiles": ["motley_crue_tickets.pdf"]
+              }
+            ]
+          },
+          {
+            "id": "orl_day4",
+            "dayNumber": 10,
+            "date": "2026-08-15",
+            "title": "Disney Hollywood Studios",
+            "description": "Full day exploring Star Wars: Galaxy's Edge and Tower of Terror at Disney's Hollywood Studios.",
+            "items": [
+              {
+                "id": "disney_studios",
+                "type": "activity",
+                "title": "Disney Hollywood Studios",
+                "time": "8:30 AM",
+                "details": "Park reservation confirmed. Star Wars rise of resistance early queue recommended.",
+                "sharedFiles": ["disney_hollywood_tickets.pdf"]
+              }
+            ]
+          },
+          {
+            "id": "orl_day5",
+            "dayNumber": 11,
+            "date": "2026-08-16",
+            "title": "Kennedy Space Center",
+            "description": "Day: Rockets and shuttles at KSC. Rocket launch watch. Night: Bioluminescence Kayaking at Space Coast.",
+            "items": [
+              {
+                "id": "ksc_visit",
+                "type": "activity",
+                "title": "Kennedy Space Center Visitor Complex",
+                "time": "9:00 AM",
+                "details": "Explore Saturn V rocket and Space Shuttle Atlantis.",
+                "sharedFiles": ["ksc_tickets.pdf"],
+                "mapPlace": {
+                  "name": "Kennedy Space Center Visitor Complex",
+                  "address": "Space Commerce Way, Merritt Island, FL 32953, United States",
+                  "phoneNumber": "+1 855 437 2031",
+                  "websiteURL": "https://www.kennedyspacecenter.com",
+                  "latitude": 28.5729,
+                  "longitude": -80.6490,
+                  "openingHours": "Monday–Sunday: 9:00 AM – 5:00 PM",
+                  "description": "Fascinating spaceport complex showcasing real spacecraft, simulated missions, astronaut interactions, and historical launch pads."
+                }
+              },
+              {
+                "id": "bioluminescence",
+                "type": "activity",
+                "title": "Bioluminescence Kayaking Tour",
+                "time": "8:30 PM",
+                "details": "Paddle in glowing waters on the Space Coast. Mosquito spray mandatory.",
+                "sharedFiles": ["kayak_bioluminescence_receipt.pdf"]
+              }
+            ]
+          },
+          {
+            "id": "orl_day6",
+            "dayNumber": 12,
+            "date": "2026-08-17",
+            "title": "Playalinda Beach Chill",
+            "description": "Free exploration day in Cap Canaveral. Chill at Playalinda Beach, watch potential rocket launch.",
+            "items": []
+          },
+          {
+            "id": "orl_day7",
+            "dayNumber": 13,
+            "date": "2026-08-18",
+            "title": "Everglades Airboat & Drive",
+            "description": "Morning: Drive to Miami. Afternoon: Airboating tour ($80) in the Everglades, Anhinga Trail walking to spot alligators. Night stay in Miami.",
+            "items": [
+              {
+                "id": "everglades_airboat",
+                "type": "activity",
+                "title": "Everglades Airboat Tour & Wildlife Show",
+                "time": "2:00 PM",
+                "details": "Ride across marshlands, spot wild alligators.",
+                "sharedFiles": ["everglades_airboat_booking.pdf"]
+              }
+            ]
           }
-        },
-        {
-          "id": "bioluminescence",
-          "type": "activity",
-          "title": "Bioluminescence Kayaking Tour",
-          "time": "8:30 PM",
-          "details": "Paddle in glowing waters on the Space Coast. Mosquito spray mandatory.",
-          "sharedFiles": ["kayak_bioluminescence_receipt.pdf"]
-        }
-      ]
+        ]
+      }
     },
     {
-      "id": "day12",
-      "dayNumber": 12,
-      "title": "Space Coast & Cap Canaveral Beach",
-      "date": "2026-08-17",
-      "location": {
-        "name": "Playalinda Beach",
-        "latitude": 28.6472,
-        "longitude": -80.6853
-      },
-      "description": "Free exploration day in Cap Canaveral. Chill at Playalinda Beach, watch potential rocket launch.",
-      "items": []
-    },
-    {
-      "id": "day13",
-      "dayNumber": 13,
-      "title": "Drive to Miami & Everglades Airboat",
-      "date": "2026-08-18",
-      "location": {
-        "name": "Everglades National Park",
-        "latitude": 25.7583,
-        "longitude": -80.7681
-      },
-      "description": "Morning: Drive to Miami. Afternoon: Airboating tour ($80) in the Everglades, Anhinga Trail walking to spot alligators. Night: Stay in Miami.",
-      "items": [
-        {
-          "id": "everglades_airboat",
-          "type": "activity",
-          "title": "Everglades Airboat Tour & Wildlife Show",
-          "time": "2:00 PM",
-          "details": "Ride across marshlands, spot wild alligators.",
-          "sharedFiles": ["everglades_airboat_booking.pdf"]
-        }
-      ]
-    },
-    {
-      "id": "day14",
-      "dayNumber": 14,
-      "title": "Miami Beach & Key Largo Snorkeling",
+      "id": "step_stay_miami",
+      "type": "stay",
+      "title": "Stay in Miami",
       "date": "2026-08-19",
-      "location": {
-        "name": "Key Largo",
-        "latitude": 25.0865,
-        "longitude": -80.4473
-      },
-      "description": "Key Largo day trip. Coral reef snorkeling with equipment provided, then check in to hotel.",
-      "items": [
-        {
-          "id": "snorkeling_key_largo",
-          "type": "activity",
-          "title": "Coral Reef Snorkeling Tour",
-          "time": "11:00 AM",
-          "details": "John Pennekamp Coral Reef State Park.",
-          "sharedFiles": ["key_largo_snorkeling.pdf"]
-        },
-        {
+      "stayInfo": {
+        "cityName": "Miami",
+        "hotel": {
           "id": "hotel_miami_checkin",
           "type": "hotel",
           "title": "Park Royal Miami Beach Check-in",
@@ -532,100 +535,86 @@
             "openingHours": "Check-in: 4:00 PM – 12:00 AM • Check-out: 11:00 AM",
             "description": "Lovely beachside hotel with a swimming pool, junior suites, and fully equipped kitchens, minutes away from Miami Beach."
           }
-        }
-      ]
-    },
-    {
-      "id": "day15",
-      "dayNumber": 15,
-      "title": "Overseas Highway & Key West Sunset Snorkel",
-      "date": "2026-08-20",
-      "location": {
-        "name": "Key West",
-        "latitude": 24.5551,
-        "longitude": -81.7800
-      },
-      "description": "Drive the Overseas Highway to Key West. Afternoon: Catamaran snorkeling on the reefs with drinks and sunset.",
-      "items": [
-        {
-          "id": "key_west_snorkel",
-          "type": "activity",
-          "title": "Key West Catamaran Reef Snorkel & Sunset",
-          "time": "4:00 PM",
-          "details": "GetYourGuide booking. Drinks included post snorkel. Duration: ~3h.",
-          "sharedFiles": ["key_west_sunset_snorkel.pdf"]
-        }
-      ]
-    },
-    {
-      "id": "day16",
-      "dayNumber": 16,
-      "title": "Key West Mangrove Kayak",
-      "date": "2026-08-21",
-      "location": {
-        "name": "Key West Mangroves",
-        "latitude": 24.5630,
-        "longitude": -81.7650
-      },
-      "description": "Morning: 2-hour kayak tour in Key West mangroves. Look out for lamantins, nurse sharks, and jellyfish.",
-      "items": [
-        {
-          "id": "mangrove_kayak",
-          "type": "activity",
-          "title": "Key West Mangrove Kayak Excursion",
-          "time": "10:00 AM",
-          "details": "Single or tandem kayak options. Guided tour.",
-          "sharedFiles": ["key_west_mangrove_kayak.pdf"]
-        }
-      ]
-    },
-    {
-      "id": "day17",
-      "dayNumber": 17,
-      "title": "Miami City & Little Havana",
-      "date": "2026-08-22",
-      "location": {
-        "name": "Little Havana",
-        "latitude": 25.7654,
-        "longitude": -80.2201
-      },
-      "description": "Wynwood Walls in the morning, Cuban coffee and music in Little Havana in the afternoon.",
-      "items": []
-    },
-    {
-      "id": "day18",
-      "dayNumber": 18,
-      "title": "Beach Chill & Decathlon Snorkel",
-      "date": "2026-08-23",
-      "location": {
-        "name": "South Beach",
-        "latitude": 25.7763,
-        "longitude": -80.1309
-      },
-      "description": "Relaxation and swimming on South Beach. Bring Decathlon snorkel glasses.",
-      "items": []
-    },
-    {
-      "id": "day19",
-      "dayNumber": 19,
-      "title": "Everglades Shark Valley Bike Ride",
-      "date": "2026-08-24",
-      "location": {
-        "name": "Shark Valley Visitor Center",
-        "latitude": 25.7583,
-        "longitude": -80.7681
-      },
-      "description": "Rent bikes at Shark Valley and ride the 24km scenic loop. Check out of Miami hotel, drive to Key West.",
-      "items": [
-        {
-          "id": "bike_rental_shark",
-          "type": "activity",
-          "title": "Shark Valley Bike Rental",
-          "time": "10:00 AM",
-          "details": "Rent bikes on-site (~$9/hour). Helmet recommended.",
-          "sharedFiles": []
         },
-        {
+        "days": [
+          {
+            "id": "mia_day1",
+            "dayNumber": 14,
+            "date": "2026-08-19",
+            "title": "Key Largo Snorkeling",
+            "description": "Key Largo day trip. Coral reef snorkeling with equipment provided, then check in to Park Royal Miami Beach.",
+            "items": [
+              {
+                "id": "snorkeling_key_largo",
+                "type": "activity",
+                "title": "Coral Reef Snorkeling Tour",
+                "time": "11:00 AM",
+                "details": "John Pennekamp Coral Reef State Park.",
+                "sharedFiles": ["key_largo_snorkeling.pdf"]
+              }
+            ]
+          },
+          {
+            "id": "mia_day2",
+            "dayNumber": 15,
+            "date": "2026-08-20",
+            "title": "Key West Sunset Catamaran",
+            "description": "Drive the Overseas Highway to Key West. Afternoon: Catamaran snorkeling on the reefs with drinks and sunset.",
+            "items": [
+              {
+                "id": "key_west_snorkel",
+                "type": "activity",
+                "title": "Key West Catamaran Reef Snorkel & Sunset",
+                "time": "4:00 PM",
+                "details": "GetYourGuide booking. Drinks included post snorkel. Duration: ~3h.",
+                "sharedFiles": ["key_west_sunset_snorkel.pdf"]
+              }
+            ]
+          },
+          {
+            "id": "mia_day3",
+            "dayNumber": 16,
+            "date": "2026-08-21",
+            "title": "Key West Mangrove Kayak",
+            "description": "Morning: 2-hour kayak tour in Key West mangroves. Look out for lamantins, nurse sharks, and jellyfish.",
+            "items": [
+              {
+                "id": "mangrove_kayak",
+                "type": "activity",
+                "title": "Key West Mangrove Kayak Excursion",
+                "time": "10:00 AM",
+                "details": "Single or tandem kayak options. Guided tour.",
+                "sharedFiles": ["key_west_mangrove_kayak.pdf"]
+              }
+            ]
+          },
+          {
+            "id": "mia_day4",
+            "dayNumber": 17,
+            "date": "2026-08-22",
+            "title": "Wynwood & Little Havana",
+            "description": "Wynwood Walls in the morning, Cuban coffee and music in Little Havana in the afternoon.",
+            "items": []
+          },
+          {
+            "id": "mia_day5",
+            "dayNumber": 18,
+            "date": "2026-08-23",
+            "title": "South Beach Relaxation",
+            "description": "Relaxation and swimming on South Beach. Bring Decathlon snorkel glasses.",
+            "items": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "step_stay_keywest",
+      "type": "stay",
+      "title": "Stay in Key West",
+      "date": "2026-08-24",
+      "stayInfo": {
+        "cityName": "Key West",
+        "hotel": {
           "id": "hotel_keywest",
           "type": "hotel",
           "title": "Hilton Garden Inn Key West",
@@ -642,83 +631,100 @@
             "openingHours": "Check-in: 4:00 PM • Check-out: 11:00 AM",
             "description": "Resort-style hotel on Key West offering beach lounger access, a heated outdoor pool, spacious rooms, and tiki bar."
           }
-        }
-      ]
-    },
-    {
-      "id": "day20",
-      "dayNumber": 20,
-      "title": "Coral Gables & Key Biscayne Light",
-      "date": "2026-08-25",
-      "location": {
-        "name": "Key Biscayne",
-        "latitude": 25.6830,
-        "longitude": -80.1633
-      },
-      "description": "Matin: Venetian Pool in Coral Gables. Afternoon: Visit Cape Florida Lighthouse in Key Biscayne.",
-      "items": []
-    },
-    {
-      "id": "day21",
-      "dayNumber": 21,
-      "title": "Florida Outlets Shopping Day",
-      "date": "2026-08-26",
-      "location": {
-        "name": "Dolphin Mall",
-        "latitude": 25.7876,
-        "longitude": -80.3789
-      },
-      "description": "All day shopping at Dolphin Mall or Sawgrass Mills outlets.",
-      "items": []
-    },
-    {
-      "id": "day22",
-      "dayNumber": 22,
-      "title": "Miami Beach Departure",
-      "date": "2026-08-27",
-      "location": {
-        "name": "Miami International Airport (MIA)",
-        "latitude": 25.7959,
-        "longitude": -80.2870
-      },
-      "description": "Final packing. Airport transfer. Flight BF743 from Miami (MIA) at 11:05 PM to Paris Orly (ORY).",
-      "items": [
-        {
-          "id": "flight_bf743",
-          "type": "flight",
-          "title": "Flight BF743 (MIA to ORY)",
-          "time": "11:05 PM",
-          "details": "Overnight flight to Paris Orly Terminal 4.",
-          "flightNumber": "BF743",
-          "sharedFiles": ["flight_bf743_info.pdf"],
-          "profileFiles": {
-            "Gauthier": "tickets/ticket_gauthier_bf743.pdf",
-            "Adrien": "tickets/ticket_adrien_bf743.pdf",
-            "Gaëtan": "tickets/ticket_gaetan_bf743.pdf",
-            "Valentin": "tickets/ticket_valentin_bf743.pdf"
+        },
+        "days": [
+          {
+            "id": "kw_day1",
+            "dayNumber": 19,
+            "date": "2026-08-24",
+            "title": "Everglades Shark Valley Bike",
+            "description": "Rent bikes at Shark Valley and ride the 24km scenic loop. Check out of Miami hotel, drive to Key West. Check-in.",
+            "items": [
+              {
+                "id": "bike_rental_shark",
+                "type": "activity",
+                "title": "Shark Valley Bike Rental",
+                "time": "10:00 AM",
+                "details": "Rent bikes on-site (~$9/hour). Helmet recommended.",
+                "sharedFiles": []
+              }
+            ]
           },
-          "walletPasses": [],
-          "profileWalletPasses": {
-            "Gauthier": "passes/pass_gauthier_bf743.pkpass",
-            "Adrien": "passes/pass_adrien_bf743.pkpass",
-            "Gaëtan": "passes/pass_gaetan_bf743.pkpass",
-            "Valentin": "passes/pass_valentin_bf743.pkpass"
+          {
+            "id": "kw_day2",
+            "dayNumber": 20,
+            "date": "2026-08-25",
+            "title": "Venetian Pool & Lighthouse",
+            "description": "Matin: Venetian Pool in Coral Gables. Afternoon: Visit Cape Florida Lighthouse in Key Biscayne.",
+            "items": []
+          },
+          {
+            "id": "kw_day3",
+            "dayNumber": 21,
+            "date": "2026-08-26",
+            "title": "Florida Outlets Shopping",
+            "description": "All day shopping at Dolphin Mall or Sawgrass Mills outlets.",
+            "items": []
           }
-        }
-      ]
+        ]
+      }
     },
     {
-      "id": "day23",
-      "dayNumber": 23,
+      "id": "step_flight_bf743",
+      "type": "flight",
+      "title": "Flight Miami to Paris",
+      "date": "2026-08-27",
+      "flightInfo": {
+        "flightNumber": "BF743",
+        "airline": "French bee",
+        "departureAirport": {
+          "name": "Miami International Airport (MIA)",
+          "latitude": 25.7959,
+          "longitude": -80.2870
+        },
+        "arrivalAirport": {
+          "name": "Paris Orly Airport (ORY)",
+          "latitude": 48.7262,
+          "longitude": 2.3652
+        },
+        "departureTime": "11:05 PM",
+        "arrivalTime": "2:00 PM (Next Day)",
+        "date": "2026-08-27",
+        "details": "Overnight flight. French bee airline. Hand luggage and check-in baggage allowances apply.",
+        "sharedFiles": ["flight_bf743_info.pdf"],
+        "profileFiles": {
+          "Gauthier": "tickets/ticket_gauthier_bf743.pdf",
+          "Adrien": "tickets/ticket_adrien_bf743.pdf",
+          "Gaëtan": "tickets/ticket_gaetan_bf743.pdf",
+          "Valentin": "tickets/ticket_valentin_bf743.pdf"
+        },
+        "walletPasses": [],
+        "profileWalletPasses": {
+          "Gauthier": "passes/pass_gauthier_bf743.pkpass",
+          "Adrien": "passes/pass_adrien_bf743.pkpass",
+          "Gaëtan": "passes/pass_gaetan_bf743.pkpass",
+          "Valentin": "passes/pass_valentin_bf743.pkpass"
+        }
+      }
+    },
+    {
+      "id": "step_stay_paris",
+      "type": "stay",
       "title": "Arrival in Paris",
       "date": "2026-08-28",
-      "location": {
-        "name": "Paris Orly Airport (ORY)",
-        "latitude": 48.7262,
-        "longitude": 2.3652
-      },
-      "description": "Landing at Paris Orly Terminal 4 at 2:00 PM local time.",
-      "items": []
+      "stayInfo": {
+        "cityName": "Paris",
+        "days": [
+          {
+            "id": "par_day1",
+            "dayNumber": 22,
+            "date": "2026-08-28",
+            "title": "Arrival Home",
+            "description": "Landed at Paris Orly Terminal 4 at 2:00 PM local time. End of the journey!",
+            "items": []
+          }
+        ]
+      }
     }
   ]
 }
