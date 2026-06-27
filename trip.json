@@ -512,6 +512,30 @@
       }
     },
     {
+      "id": "step_car_orlando_miami",
+      "type": "car",
+      "title": "Road Trip: Orlando to Miami",
+      "date": "2026-08-18",
+      "flightInfo": {
+        "flightNumber": "Drive",
+        "airline": "Rental Car",
+        "departureAirport": {
+          "name": "Orlando (MCO)",
+          "latitude": 28.5383,
+          "longitude": -81.3792
+        },
+        "arrivalAirport": {
+          "name": "Miami (MIA)",
+          "latitude": 25.7617,
+          "longitude": -80.1918
+        },
+        "departureTime": "9:00 AM",
+        "arrivalTime": "1:00 PM",
+        "date": "2026-08-18",
+        "details": "Scenic drive down Florida's Turnpike to Miami Beach. Enjoy the landscape transition!"
+      }
+    },
+    {
       "id": "step_stay_miami",
       "type": "stay",
       "title": "Stay in Miami",
